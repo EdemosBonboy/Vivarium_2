@@ -6,7 +6,7 @@
 package model;
 
 import javafx.scene.paint.Color;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 
 /**
  *
@@ -16,14 +16,12 @@ import vivariumview.Utils;
 public class Predateur extends Animal {
     private String nom;
     
-    public Predateur(int id, int x,int y,int dir,int longueur, int largeur) {
-        super(x,y,dir,Utils.TAILLE_PROIE,Utils.VITESSE_PROIE,longueur,largeur,Utils.CONSOMAIR_PROIE);  //4eme param est la taille, 5eme param est la vitesse
+    public Predateur(int id, int x,int y,int dir, int taille, int vitesse, int longueur, int largeur, int consoAir) {
+        super(id, x, y,dir,taille,vitesse,longueur,largeur,consoAir);  //4eme param est la taille, 5eme param est la vitesse
         nom = "Predateur"+id;
-        this.circle.setRadius(Utils.TAILLE_PREDATEUR);
-        this.circle.setFill(Color.RED);
     }
     
-    //manger un proie
+    //manger une proie
     void manger(Proie pr){
         pr.remove();
     }

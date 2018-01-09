@@ -41,6 +41,7 @@ public class VivariumView extends Application {
         fen.getRight().getGridPane().getBtnPoule().setOnAction(rightController);
         fen.getRight().getBtnObstacle().setOnAction(rightController);
         fen.getRight().getBtnLancer().setOnAction(rightController);
+        fen.getRight().getBtnVider().setOnAction(rightController);
     }
 
     @Override
@@ -58,5 +59,4 @@ public class VivariumView extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

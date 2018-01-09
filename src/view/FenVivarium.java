@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 
 /**
  *
@@ -24,7 +24,7 @@ public class FenVivarium extends Stage {
     private Center center = new Center();
     
     public void init() {
-        setTitle(Utils.TITRE);
+        setTitle(Constantes.TITRE);
         //setWidth(1200);
         //setHeight(600);
         setWidth(Screen.getPrimary().getBounds().getWidth());

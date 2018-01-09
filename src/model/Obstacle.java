@@ -5,8 +5,13 @@
  */
 package model;
 
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 
 /**
  *
@@ -19,12 +24,20 @@ public class Obstacle extends Circle {
         this.idObst = idObst;
         this.x = x;
         this.y = y;
-        this.tailleO = Utils.TAILLE_OBSTACLE;
+        this.tailleO = Constantes.TAILLE_OBSTACLE;
         this.longueur = longueur;
         this.largeur = largeur;
         setCenterX(x);
         setCenterY(y);
         setRadius(tailleO);
+        
+        try {
+            InputStream inputStream = Files.newInputStream(Paths.get(Constantes.IMAGE_OBSTACLE));
+            Image backgroundImage = new Image(inputStream);
+            inputStream.close();
+            
+            setFill(new ImagePattern(backgroundImage));
+        } catch (Exception e) {}
     }
     
     @Override

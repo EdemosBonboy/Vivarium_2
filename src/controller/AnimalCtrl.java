@@ -6,7 +6,7 @@
 package controller;
 
 import model.Animal;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 import model.Nourriture;
 
 /**
@@ -16,40 +16,40 @@ import model.Nourriture;
 public class AnimalCtrl {
     public void move(Animal a){
         switch (a.getDir()) {
-        case Utils.left_up:
+        case Constantes.left_up:
             //x-=vitesse;
             a.setX(a.getX()-a.getVitesse());
             //y-=vitesse;
             a.setY(a.getY()-a.getVitesse());
-            if(a.getX()<=0)a.setDir(Utils.right_up);
-            else if(a.getY()<=0)a.setDir(Utils.left_down);
+            if(a.getX()<=0)a.setDir(Constantes.right_up);
+            else if(a.getY()<=0)a.setDir(Constantes.left_down);
             //System.out.println("Je bouge left_up");
             break;
-        case Utils.right_up:
+        case Constantes.right_up:
             //x+=vitesse;
             a.setX(a.getX()+a.getVitesse());
             //y-=vitesse;
             a.setY(a.getY()-a.getVitesse());
-            if(a.getX()>=a.getLargeur()-a.getTaille())a.setDir(Utils.left_up);
-            else if(a.getY()<=0)a.setDir(Utils.right_down);
+            if(a.getX()>=a.getLargeur()-a.getTaille())a.setDir(Constantes.left_up);
+            else if(a.getY()<=0)a.setDir(Constantes.right_down);
             //System.out.println("Je bouge right_up");
             break;
-        case Utils.left_down:  
+        case Constantes.left_down:  
             //x-=vitesse;
             a.setX(a.getX()-a.getVitesse());
             //y+=vitesse;
             a.setY(a.getY()+a.getVitesse());
-            if(a.getX()<=0)a.setDir(Utils.right_down);
-            else if(a.getY()>=a.getLongueur()-a.getTaille())a.setDir(Utils.left_up);
+            if(a.getX()<=0)a.setDir(Constantes.right_down);
+            else if(a.getY()>=a.getLongueur()-a.getTaille())a.setDir(Constantes.left_up);
             //System.out.println("Je bouge left_down");
             break;
-        case Utils.right_down:
+        case Constantes.right_down:
             //x+=vitesse;
             a.setX(a.getX()+a.getVitesse());
             //y+=vitesse;
             a.setY(a.getY()+a.getVitesse());
-            if(a.getX()>=a.getLargeur()-a.getTaille())a.setDir(Utils.left_down);
-            else if(a.getY()>=a.getLongueur()-a.getTaille())a.setDir(Utils.right_up);
+            if(a.getX()>=a.getLargeur()-a.getTaille())a.setDir(Constantes.left_down);
+            else if(a.getY()>=a.getLongueur()-a.getTaille())a.setDir(Constantes.right_up);
             //System.out.println("Je bouge right_down");
             break;
         }

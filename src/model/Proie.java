@@ -6,7 +6,7 @@
 package model;
 
 import javafx.scene.paint.Color;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 
 /**
  *
@@ -16,11 +16,9 @@ public class Proie extends Animal {
     
     private String nom;
 
-    public Proie(int idProi,int x, int y, int dir,int especeX, int especeY) {
-        super(x,y,dir,Utils.TAILLE_PROIE,Utils.VITESSE_PROIE,especeX,especeY,Utils.CONSOMAIR_PROIE);
+    public Proie(int idProi,int x, int y, int dir, int taille, int vitesse, int longueur, int largeur, int consoAir) {
+        super(idProi,x,y,dir,taille,vitesse,longueur,largeur,consoAir);
         this.nom = "Proie"+idProi;
-        this.circle.setRadius(Utils.TAILLE_PROIE);
-        this.circle.setFill(Color.YELLOW);
     }
     
     @Override

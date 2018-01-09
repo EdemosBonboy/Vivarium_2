@@ -8,8 +8,9 @@ package view;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 
 /**
  *
@@ -17,20 +18,24 @@ import vivariumview.Utils;
  */
 public class Right extends VBox {
     private RightGridPane gridPane;
-    private Button btnObstacle, btnLancer;
+    private Button btnObstacle, btnLancer, btnVider;
+    private Label lbNbPredateurs, lbNbProies;
     
     public Right() {
         gridPane = new RightGridPane();
-        btnObstacle = new Button(Utils.BTN_OBSTACLE_TEXT);
-        btnLancer = new Button(Utils.BTN_LANCER_TEXT);
+        btnObstacle = new Button(Constantes.BTN_OBSTACLE_TEXT);
+        btnLancer = new Button(Constantes.BTN_LANCER_TEXT);
+        btnVider = new Button(Constantes.BTN_VIDER_TEXT);
+        lbNbPredateurs = new Label("PREDATEURS : "+Integer.toString(0));
+        lbNbProies = new Label("PROIES : " + Integer.toString(0));
         
         setSpacing(10);
-        setPadding(new Insets(5, 5, 5, 5));
-        setStyle("-fx-background-color: #cecece;");
-        setPrefWidth(Utils.RIGHT_WIDTH);
+        setPadding(new Insets(15, 15, 15, 15));
+        setStyle("-fx-background-color: #ffffff;");
+        setPrefWidth(Constantes.RIGHT_WIDTH);
         setAlignment(Pos.TOP_CENTER);
         
-        getChildren().addAll(gridPane, btnObstacle, btnLancer);
+        getChildren().addAll(gridPane, btnObstacle, btnLancer, btnVider, lbNbPredateurs, lbNbProies);
     }
 
     public RightGridPane getGridPane() {
@@ -43,5 +48,17 @@ public class Right extends VBox {
 
     public Button getBtnLancer() {
         return btnLancer;
+    }
+
+    public Label getLbNbPredateurs() {
+        return lbNbPredateurs;
+    }
+
+    public Label getLbNbProies() {
+        return lbNbProies;
+    }
+
+    public Button getBtnVider() {
+        return btnVider;
     }
 }

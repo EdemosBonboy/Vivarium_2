@@ -6,7 +6,7 @@
 package controller;
 
 import model.Animal;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 import model.Nourriture;
 import model.Obstacle;
 
@@ -49,20 +49,20 @@ public class RencontreCtrl {
         double dis= Math.sqrt( (x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));  
         if(dis<=a.getTaille()/2+b.getTailleO()/2){
             switch (a.getDir()) {
-            case Utils.left_up:
-                a.setDir(Utils.right_down);
+            case Constantes.left_up:
+                a.setDir(Constantes.right_down);
                 //System.out.println("Change : right_down");
                 break;
-            case Utils.left_down:
-                a.setDir(Utils.right_up);
+            case Constantes.left_down:
+                a.setDir(Constantes.right_up);
                 //System.out.println("Change : left_down");
                 break;
-            case Utils.right_up:
-                a.setDir(Utils.left_down);
+            case Constantes.right_up:
+                a.setDir(Constantes.left_down);
                 //System.out.println("Change : right_up");
                 break;
-            case Utils.right_down:
-                a.setDir(Utils.left_up);
+            case Constantes.right_down:
+                a.setDir(Constantes.left_up);
                 //System.out.println("Change : left_up");
                 break;
             }
@@ -80,39 +80,39 @@ public class RencontreCtrl {
             //si a est proie, a echape
             if(a.getType().equals("Proie")){
                 switch (a.getDir()) {
-                    case Utils.left_up:
-                        a.setDir(Utils.right_down);
+                    case Constantes.left_up:
+                        a.setDir(Constantes.right_down);
                         System.out.println(a.toString()+" change : right_down");
                     break;
-                    case Utils.left_down:
-                        a.setDir(Utils.right_up);
+                    case Constantes.left_down:
+                        a.setDir(Constantes.right_up);
                         System.out.println(a.toString()+" change : left_down");
                     break;
-                    case Utils.right_up:
-                        a.setDir(Utils.left_down);
+                    case Constantes.right_up:
+                        a.setDir(Constantes.left_down);
                         System.out.println(a.toString()+ " change : right_up");
                     break;
-                    case Utils.right_down:
-                        a.setDir(Utils.left_up);
+                    case Constantes.right_down:
+                        a.setDir(Constantes.left_up);
                         System.out.println(a.toString()+" change : left_up");
                     break;  
                 }
             } else {    //si b est proie, b echape
                 switch (b.getDir()) {  
-                    case Utils.left_up:
-                        b.setDir(Utils.right_down);
+                    case Constantes.left_up:
+                        b.setDir(Constantes.right_down);
                         System.out.println(b.toString()+" change : right_down");
                     break;
-                    case Utils.left_down:
-                        b.setDir(Utils.right_up);
+                    case Constantes.left_down:
+                        b.setDir(Constantes.right_up);
                         System.out.println(b.toString()+" change : left_down");
                     break;
-                    case Utils.right_up:
-                        b.setDir(Utils.left_down);
+                    case Constantes.right_up:
+                        b.setDir(Constantes.left_down);
                         System.out.println(b.toString()+" change : right_up");
                     break;
-                    case Utils.right_down:
-                        b.setDir(Utils.left_up);
+                    case Constantes.right_down:
+                        b.setDir(Constantes.left_up);
                         System.out.println(b.toString()+" change : left_up");
                     break;
                 }

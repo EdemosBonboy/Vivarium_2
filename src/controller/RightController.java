@@ -13,14 +13,18 @@ import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.Animal;
+import model.Lapin;
+import model.Lion;
+import model.Loup;
 import model.Nourriture;
 import model.Obstacle;
 import model.Point;
+import model.Poule;
 import model.Predateur;
 import model.Proie;
 import view.Center;
 import view.Right;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 /**
  *
  * @author bonbo
@@ -46,23 +50,17 @@ public class RightController implements EventHandler<ActionEvent> {
         center = c;
     }
     
-    private Point genererPointAleatoire(Color c) {
-        Random r = new Random();
-        double x = r.nextDouble()*1000 + 100;
-        double y = r.nextDouble()*1000 + 100;
-        return new Point(x, y, c);
-    }
-    
     @Override
     public void handle(ActionEvent event) {
         if (event.getSource() == right.getGridPane().getBtnLion()) {
             //System.out.println("BTN LION CLICK");
             //center.getChildren().add(genererPointAleatoire(Color.RED));
-            ajouter(2);
+            ajouter(1);
         }
         if (event.getSource() == right.getGridPane().getBtnLoup()) {
-            System.out.println("BTN LOUP CLICK");
-            center.getChildren().add(genererPointAleatoire(Color.GREEN));
+            //System.out.println("BTN LOUP CLICK");
+            //center.getChildren().add(genererPointAleatoire(Color.GREEN));
+            ajouter(2);
         }
         if (event.getSource() == right.getGridPane().getBtnLapin()) {
             //System.out.println("BTN LAPIN CLICK");
@@ -70,16 +68,33 @@ public class RightController implements EventHandler<ActionEvent> {
             ajouter(3);
         }
         if (event.getSource() == right.getGridPane().getBtnPoule()) {
-            System.out.println("BTN POULE CLICK");
-            center.getChildren().add(genererPointAleatoire(Color.WHITE));
+            //System.out.println("BTN POULE CLICK");
+            //center.getChildren().add(genererPointAleatoire(Color.WHITE));
+            ajouter(4);
         }
         if (event.getSource() == right.getBtnObstacle()) {
             //System.out.println("BTN OBSTACLE CLICK");
             //center.getChildren().add(genererPointAleatoire(Color.BLACK));
-            ajouter(1);
+            ajouter(5);
         }
         if (event.getSource() == right.getBtnLancer()) {
             run_run();
+            updateNombreAnimaux();
+        }
+        if (event.getSource() == right.getBtnVider()) {
+            System.out.println("TOTAL : " + listCircles.size());
+            for(int n = 0; n < listCircles.size(); n++) {
+                listCircles.get(n).setVisible(false);
+                listCircles.remove(n);
+                System.out.println("Suppr : " + n);
+            }
+            nbPred = 0;
+            nbProi = 0;
+            listAnim.clear();
+            listCircles.clear();
+            listNour.clear();
+            listObst.clear();
+            updateNombreAnimaux();
         }
     }
     
@@ -93,38 +108,59 @@ public class RightController implements EventHandler<ActionEvent> {
         int dir=(int) (Math.random()*4);    //orientation de deplacement
         
         switch(choix){
+            //ajouter Lion
             case 1:
+                System.out.println("Ajouter Lion");
+                Lion lion = new Lion(nbProi,x,y,dir);
+                center.getChildren().add(lion.getCircle());
+                nbPred++;
+                listAnim.add(lion);
+                listCircles.add(lion.getCircle());
+            break;
+            //ajouter Loup
+            case 2:
+                System.out.println("Ajouter Loup");
+                Loup loup = new Loup(nbProi,x,y,dir);
+                center.getChildren().add(loup.getCircle());
+                nbPred++;
+                listAnim.add(loup);
+                listCircles.add(loup.getCircle());
+            break;
+            //ajouter un lapin
+            case 3:
+                System.out.println("Ajouter Lapin");
+                Lapin lapin = new Lapin(nbPred,x,y,dir);
+                //circle = new Circle(p.getX(), p.getY(), 10, Color.RED);
+                center.getChildren().add(lapin.getCircle());
+                nbProi++;
+                listAnim.add(lapin);
+                listCircles.add(lapin.getCircle());
+            break;
+            //ajouter Poule
+            case 4:
+                System.out.println("Ajouter Poule");
+                Poule poule = new Poule(nbPred,x,y,dir);
+                //circle = new Circle(p.getX(), p.getY(), 10, Color.RED);
+                center.getChildren().add(poule.getCircle());
+                nbProi++;
+                listAnim.add(poule);
+                listCircles.add(poule.getCircle());
+            break;
+            case 5:
                 System.out.println("Ajouter Obstacle");
-                Obstacle o = new Obstacle(nbObst,x,y,(int)Utils.CENTER_HEIGHT,(int)Utils.CENTER_WIDTH);
+                Obstacle o = new Obstacle(nbObst,x,y,(int)Constantes.CENTER_HEIGHT,(int)Constantes.CENTER_WIDTH);
                 center.getChildren().add(o);
                 nbObst++;
                 listObst.add(o);
                 listCircles.add(o);
             break;
-            //ajouter un predateur
-            case 2:
-                System.out.println("Ajouter Predateur");
-                Predateur p = new Predateur(nbPred,x,y,dir,(int)Utils.CENTER_HEIGHT,(int)Utils.CENTER_WIDTH);
-                //circle = new Circle(p.getX(), p.getY(), 10, Color.RED);
-                center.getChildren().add(p.getCircle());
-                nbPred++;
-                listAnim.add(p);
-                listCircles.add(p.getCircle());
-            break;
-            //ajouter un proie
-            case 3:
-                System.out.println("Ajouter Proie");
-                Proie proie = new Proie(nbProi,x,y,dir,(int)Utils.CENTER_HEIGHT,(int)Utils.CENTER_WIDTH);
-                center.getChildren().add(proie.getCircle());
-                nbProi++;
-                listAnim.add(proie);
-                listCircles.add(proie.getCircle());
-            break;
         }
+        updateNombreAnimaux();
     }
     
     public void run_run(){  
-        new Thread(){  
+        if (!listAnim.isEmpty()) {
+            new Thread(){  
             @Override
             public void run(){
                 int n = 0;
@@ -139,21 +175,21 @@ public class RightController implements EventHandler<ActionEvent> {
                             Animal b2=listAnim.get(j);
                             RencontreCtrl bab=new RencontreCtrl();
                             if(bab.animdestroy(b1, b2)){        //se rencontrent
-                                nbProi--;
+                                nbProi -= 1;
                                 if(b1.getType() == "Predateur"){       //si b1 est predateur, b2 est mange par b1
                                     listAnim.remove(j);
                                     listCircles.get(j).setVisible(false);
                                     listCircles.remove(j);
-                                    System.out.println("1_REMOOOOOOOOOOOOOVE");
+                                    //System.out.println("1_REMOOOOOOOOOOOOOVE");
                                     break;
                                 }  
                                 else if(b1.getType() == "Proie"){ 
                                     listAnim.remove(i);
                                     listCircles.get(i).setVisible(false);
                                     listCircles.remove(i);
-                                    System.out.println("2_REMOOOOOOOOOOOOOOVE");
+                                    //System.out.println("2_REMOOOOOOOOOOOOOOVE");
                                     break;  
-                                }  
+                                }
                             }
                         }  
                     }  
@@ -161,11 +197,17 @@ public class RightController implements EventHandler<ActionEvent> {
                     try {  
                         Thread.sleep(30);            //mettre en pause
                     } catch (InterruptedException e) {  
-                        e.printStackTrace();  
+                        e.printStackTrace();
                     }
                     n++;
                 }
             }
         }.start();
+        }
+    }
+    
+    private void updateNombreAnimaux() {
+        right.getLbNbPredateurs().setText("PREDATEURS : " + Integer.toString(nbPred));
+        right.getLbNbProies().setText("PROIES : " + Integer.toString(nbProi));
     }
 }

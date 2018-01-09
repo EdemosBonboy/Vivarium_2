@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import vivariumview.Utils;
+import vivariumview.Constantes;
 
 /**
  *
@@ -24,9 +24,9 @@ public class Center extends Pane {
     
     public Center() {
         try {
-            setWidth(Utils.CENTER_WIDTH);
-            setHeight(Utils.CENTER_HEIGHT);
-            InputStream inputStream = Files.newInputStream(Paths.get("res/images/foret.jpg"));
+            setWidth(Constantes.CENTER_WIDTH);
+            setHeight(Constantes.CENTER_HEIGHT);
+            InputStream inputStream = Files.newInputStream(Paths.get("res/images/herbes_2.jpg"));
             Image backgroundImage = new Image(inputStream);
             inputStream.close();
             

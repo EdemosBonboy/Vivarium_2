@@ -80,7 +80,7 @@ public class VivariumCtrl {
     }
     
     //ajouter les objets
-    public void ajouter(Vivarium v,int choix){     //obtenir la valeur venant de boutton
+    /*public void ajouter(Vivarium v,int choix){     //obtenir la valeur venant de boutton
         
         //position aleatoire
         int x=(int) (Math.random()*700);    //position x
@@ -109,7 +109,7 @@ public class VivariumCtrl {
                 listAnim.add(new Proie(v.getNbProi(),x,y,dir, v.getLongueur(), v.getLargeur()));
             break;
         }
-    }
+    }*/
     
     @Override
     public String toString(){
